@@ -1,0 +1,36 @@
+        int add(int a, int b)
+        { 
+            while (b != 0)
+            {
+                int c = a & b;
+                a ^= b;
+                b = c << 1;
+            }
+            return a;
+        }
+
+        int subtract(int a, int b)
+        {
+            return add(a, add(~b, 1));
+        }
+
+        int divide(int a, int b)
+        {
+            int c = 0, r = 32, i = 32, p = a + 1;
+            uint d = 0x80000000;
+
+            while ((b & d) == 0)
+            {
+                d >>= 1;
+                r--;
+            }
+
+            while (p > a)
+            {
+                c <<= 1;
+                p = (b >> i--) & ((1 << r) - 1);
+                if (p >= a)
+                    c |= 1;
+            }
+            return c; //p is remainder (for modulus)
+        }
