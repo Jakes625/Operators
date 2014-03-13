@@ -8,6 +8,16 @@
             }
             return a;
         }
+        
+        int mult(int a, int b)
+        {
+                int i = 0, c = 0;
+                while (i < b) {
+                        c = add(c, a);
+                        i = add(i, 1);
+                }
+                return c;
+        }
 
         int subtract(int a, int b)
         {
